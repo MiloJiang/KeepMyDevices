@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">设备小助手</string>
+    <string name="action_settings">设置</string>
+    <string name="daily_notification">最近一次打卡是: 2016年8月17日</string>
+</resources>

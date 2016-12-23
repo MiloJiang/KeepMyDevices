@@ -1,4 +1,4 @@
-# InventoryMyDevices-web
+# KeepMyDevice Server
 
 ## Requirements
 * An existing project in [wilddog](https://www.wilddog.com/)

@@ -1,6 +1,7 @@
+## Mac
+.DS_Store
 
-
-######### Android
+## Android
 # Built application files
 *.apk
 *.ap_

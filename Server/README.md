@@ -47,5 +47,8 @@ python migrate.py db upgrade
 * 接入Flask-Restless
 提供可以API供应用访问
 
-* Flask-Security
+* Flask-Security(optional)
 需要权限控制 https://github.com/flask-admin/Flask-Admin/tree/master/examples/auth
+
+* Flask-Login
+和Flask-Security相比, 页面(template)上的工作量更少一点. Admin页面需要权限控制.

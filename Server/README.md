@@ -39,6 +39,7 @@ app.config['SECRET_KEY'] = '\xb7\x7f\xa6\xdf\xf3\x0f3\xefO\xe7\x9a\xd8?{\x82\xb8
 ````
 python migrate.py db init
 python migrate.py db migrate
+python migrate.py db upgrade
 ````
 引入 Migrate 脚本便于我们今后更容易的修改数据的结构.这里需要注意的是, 生成的DB的文件(如果有)的位置最好是绝对路径. 相对路径的话, 容易造成运行脚本时的路径和服务运行的路径不一致.
 
@@ -46,4 +47,5 @@ python migrate.py db migrate
 * 接入Flask-Restless
 提供可以API供应用访问
 
-* Login模块
+* Flask-Security
+需要权限控制 https://github.com/flask-admin/Flask-Admin/tree/master/examples/auth

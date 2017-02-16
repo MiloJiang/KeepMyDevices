@@ -1,42 +1,40 @@
 from keepmydevices import db
-from flask_security import UserMixin, RoleMixin, SQLAlchemyUserDatastore
+from flask_sqlalchemy import SQLAlchemy
 
-roles_users = db.Table('roles_users',
-                       db.Column('user_id', db.Integer(), db.ForeignKey('user.id')),
-                       db.Column('role_id', db.Integer(), db.ForeignKey('role.id')))
-
-
-class User(db.Model, UserMixin):
+class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(255), unique=True)
-    password = db.Column(db.String(255))
-    active = db.Column(db.Boolean())
-    confirmed_at = db.Column(db.DateTime())
-    roles = db.relationship('Role', secondary=roles_users,
-                            backref=db.backref('users', lazy='dynamic'))
-    last_login_at = db.Column(db.DateTime())
-    current_login_at = db.Column(db.DateTime())
-    last_login_ip = db.Column(db.String(255))
-    current_login_ip = db.Column(db.String(255))
-    login_count = db.Column(db.Integer)
+    first_name = db.Column(db.String(100))
+    last_name = db.Column(db.String(100))
+    login = db.Column(db.String(80), unique=True)
+    email = db.Column(db.String(120))
+    password = db.Column(db.String(64))
 
-    def __repr__(self):
-        return '<models.User[email=%s]>' % self.email
+    # Flask-Login integration
+    def is_authenticated(self):
+        return True
 
+    def is_active(self):
+        return True
 
-class Role(db.Model, RoleMixin):
-    id = db.Column(db.Integer(), primary_key=True)
-    name = db.Column(db.String(80), unique=True)
-    description = db.Column(db.String(255))
+    def is_anonymous(self):
+        return False
 
-user_datastore = SQLAlchemyUserDatastore(db, User, Role)
+    def get_id(self):
+        return self.id
+
+    # Required for administrative interface
+    def __unicode__(self):
+        return self.username
 
 
 class Device(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    sn = db.Column(db.String(80), unique=True)
-    brand = db.Column(db.String(80))
-    model = db.Column(db.String(120))
+    id      = db.Column(db.Integer, primary_key=True)
+    sn      = db.Column(db.String(80), unique=True)
+    brand   = db.Column(db.String(80))
+    model   = db.Column(db.String(120))
+    latitude    = db.Column(db.Float)
+    longitude   = db.Column(db.Float)
+    timestamp   = db.Column(db.TIMESTAMP)
 
     def __repr__(self):
         return '<Device %s: [%s] [%s]>' % (self.sn, self.brand, self.model)

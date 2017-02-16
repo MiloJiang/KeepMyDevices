@@ -1,8 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-from flask_security import Security
-from flask_restless import APIManager
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
@@ -19,17 +17,13 @@ manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 
 import keepmydevices.views
-from .models import Device, user_datastore
 
-## Security
-security = Security(app, user_datastore)
-app.config['SECURITY_LOGIN_URL'] = "/login/"
-app.config['SECURITY_URL_PREFIX'] = "/admin"
-
-## Restful API
-api_mgr = APIManager(app, flask_sqlalchemy_db=db)
+from login import init_login
+init_login()
 
 from admin import init_admin
 init_admin()
 
-api_mgr.create_api(Device, methods=['GET', 'POST', 'DELETE'])
+from api import init_api
+init_api()
+

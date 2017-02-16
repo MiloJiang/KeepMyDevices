@@ -47,8 +47,20 @@ python migrate.py db upgrade
 * 接入Flask-Restless
 提供可以API供应用访问
 
+* Flask-Admin
+管理页面
+
 * Flask-Security(optional)
 需要权限控制 https://github.com/flask-admin/Flask-Admin/tree/master/examples/auth
 
 * Flask-Login
-和Flask-Security相比, 页面(template)上的工作量更少一点. Admin页面需要权限控制.
+和Flask-Security相比, 页面(template)上的工作量更少一点. 但是两者都需要重写Admin页面来实现针对管理页面的权限管理.
+
+
+* Flask-JWT
+API同样也需要保护
+设置完成后, 请求需要第一次访问 "/auth" 获得token, 然后根据这个token加入请求的头部进行访问:
+```
+Authorization: JWT <token> 
+```
+

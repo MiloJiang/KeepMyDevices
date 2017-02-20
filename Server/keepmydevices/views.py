@@ -1,9 +1,12 @@
 from keepmydevices import app
 from flask import render_template
-from flask import redirect, url_for, request
+from flask_login import login_required
+
+from .models import Device
 
 @app.route("/")
-def hello():
-    # return render_template("main.html")
-    return redirect(url_for('admin.login_view', next=request.url))
+@login_required
+def main():
+    devices = Device.query.all()
+    return render_template("main.html", devices=devices)
 

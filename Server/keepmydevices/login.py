@@ -40,7 +40,6 @@ def init_login():
     login_manager.init_app(app)
 
     ## Add admin
-
     # test_user = User(login="admin", password=generate_password_hash("admin"))
     # db.session.add(test_user)
     # db.session.commit()

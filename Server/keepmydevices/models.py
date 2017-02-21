@@ -1,5 +1,7 @@
 from keepmydevices import db
-from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import orm
+
+from datetime import datetime
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -34,7 +36,12 @@ class Device(db.Model):
     model   = db.Column(db.String(120))
     latitude    = db.Column(db.Float)
     longitude   = db.Column(db.Float)
-    timestamp   = db.Column(db.TIMESTAMP)
+    timestamp   = db.Column(db.TIMESTAMP, default=datetime.now())
+
+    @orm.validates('sn')
+    def validate_sn(self, key, value):
+        assert value != ''
+        return value
 
     def __repr__(self):
         return '<Device %s: [%s] [%s]>' % (self.sn, self.brand, self.model)

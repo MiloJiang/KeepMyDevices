@@ -30,4 +30,5 @@ def init_api():
     api_mgr.create_api(Device,
                        methods=['GET', 'POST', 'DELETE'],
                        url_prefix='/api/v1',
-                       preprocessors=dict(GET_SINGLE=[protected], GET_MANY=[protected]))
+                       preprocessors=dict(GET_SINGLE=[protected], GET_MANY=[protected]),
+                       include_columns=['id', 'sn', 'brand', 'model', 'latitude', 'longitude'])

@@ -3,6 +3,7 @@ import requests
 import json
 from datetime import datetime
 
+
 class ApiTestCase(unittest.TestCase):
 
     def setUp(self):
@@ -31,26 +32,61 @@ class ApiTestCase(unittest.TestCase):
         r = requests.get(url, headers=headers)
         print r.text
 
-    def testUpdate(self):
-        url = self.base_url +'/api/v1/device'
+    # def testPost(self):
+    #     url = self.base_url +'/api/v1/device'
+    #     self.getToken()
+    #     headers = {'Authorization': 'JWT ' + self.token}
+    #     payload = {'brand': 'testbrand',
+    #                'model': 'testmodel',
+    #                'sn': '11',
+    #                }
+    #     r = requests.post(url, headers=headers, json=payload)
+    #
+    #     payload = {'brand': 'testbrand',
+    #                'model': '',
+    #                'sn': '12',
+    #                'timestamp': str(datetime.now())
+    #                }
+    #     r = requests.post(url, headers=headers, json=payload)
+    #     if "IntegrityError" in r.text:
+    #         pass
+
+    # def testUpdate(self):
+    #     url = self.base_url +'/api/v1/device/11'
+    #     self.getToken()
+    #     headers = {'Authorization': 'JWT ' + self.token}
+    #     payload = {'brand': 'testbrand2',
+    #                'model': 'testmodel2',
+    #                'timestamp': str(datetime.now()),
+    #                # 'sn': "12"
+    #                }
+    #     r = requests.put(url, headers=headers, json=payload)
+    #     print r.text
+
+    def testUpdateExists(self):
+        url = self.base_url + '/api/v1/update'
         self.getToken()
         headers = {'Authorization': 'JWT ' + self.token}
-        payload = {'brand': 'testbrand',
-                   'model': 'testmodel',
-                   'sn': '11',
+        payload = {'brand': 'testbrand2',
+                   'model': 'testmodel2',
+                   'timestamp': str(datetime.now()),
+                   'sn': "12"
                    }
         r = requests.post(url, headers=headers, json=payload)
         print r.text
 
-        payload = {'brand': 'testbrand',
-                   'model': '',
-                   'sn': '12',
-                   'timestamp': str(datetime.now())
+    def testUpdateNotExists(self):
+        import uuid
+        url = self.base_url + '/api/v1/update'
+        self.getToken()
+        headers = {'Authorization': 'JWT ' + self.token}
+        payload = {'brand': 'testbrand2',
+                   'model': 'testmodel2',
+                   'timestamp': str(datetime.now()),
+                   'sn': str(uuid.uuid1())
                    }
         r = requests.post(url, headers=headers, json=payload)
         print r.text
-
-
 
 if __name__ == '__main__':
     unittest.main()

@@ -30,13 +30,13 @@ class User(db.Model):
 
 
 class Device(db.Model):
-    id      = db.Column(db.Integer, primary_key=True)
-    sn      = db.Column(db.String(80), unique=True)
-    brand   = db.Column(db.String(80))
-    model   = db.Column(db.String(120))
-    latitude    = db.Column(db.Float)
-    longitude   = db.Column(db.Float)
-    timestamp   = db.Column(db.TIMESTAMP, default=datetime.now())
+    id = db.Column(db.Integer, primary_key=True)
+    sn = db.Column(db.String(80), unique=True)
+    brand = db.Column(db.String(80))
+    model = db.Column(db.String(120))
+    latitude = db.Column(db.Float)
+    longitude = db.Column(db.Float)
+    timestamp = db.Column(db.TIMESTAMP, default=datetime.now())
 
     @orm.validates('sn')
     def validate_sn(self, key, value):
@@ -45,3 +45,14 @@ class Device(db.Model):
 
     def __repr__(self):
         return '<Device %s: [%s] [%s]>' % (self.sn, self.brand, self.model)
+
+    def to_json(self):
+        return {
+            'id': self.id,
+            'sn': self.sn,
+            'brand': self.brand,
+            'model': self.model,
+            'latitude': self.latitude,
+            'longitude': self.longitude,
+            'timestamp': self.timestamp
+        }

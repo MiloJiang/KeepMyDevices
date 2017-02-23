@@ -4,6 +4,7 @@ from flask_login import login_required
 
 from .models import Device
 
+
 @app.route("/")
 @login_required
 def main():

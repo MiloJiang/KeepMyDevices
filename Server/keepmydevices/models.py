@@ -54,5 +54,5 @@ class Device(db.Model):
             'model': self.model,
             'latitude': self.latitude,
             'longitude': self.longitude,
-            'timestamp': self.timestamp
+            'timestamp': self.timestamp.strftime('%Y-%m-%d %H:%M:%S')
         }

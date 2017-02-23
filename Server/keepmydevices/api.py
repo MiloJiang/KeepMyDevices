@@ -67,4 +67,4 @@ def update_device():
         return jsonify(device.to_json())
 
     else:
-        return "hello"
+        return "Please use 'post' method!"

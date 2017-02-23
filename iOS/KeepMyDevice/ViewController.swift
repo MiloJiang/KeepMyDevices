@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 import MapKit
-import Wilddog
+//import Wilddog
 
 extension UIDevice{
     ///设备型号的名称
@@ -84,7 +84,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var currentAnnotation: MKPointAnnotation?
     var deviceInfo: Dictionary<String, String>?
     let locationManager: CLLocationManager = CLLocationManager()
-    let deviceRef = Wilddog(url:"https://kanban.wilddogio.com/devices")
+//    let deviceRef = Wilddog(url:"https://kanban.wilddogio.com/devices")
 
 
     override func viewDidLoad() {

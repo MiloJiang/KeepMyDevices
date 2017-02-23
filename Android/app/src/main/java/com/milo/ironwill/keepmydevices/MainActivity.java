@@ -24,7 +24,7 @@ import com.amap.api.maps2d.UiSettings;
 import com.amap.api.maps2d.model.LatLng;
 import com.amap.api.maps2d.model.MarkerOptions;
 
-import com.wilddog.client.Wilddog;
+//import com.wilddog.client.Wilddog;
 
 public class MainActivity extends AppCompatActivity implements IMainView {
 
@@ -37,8 +37,6 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Wilddog.setAndroidContext(this);
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -64,7 +62,6 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         mPresenter.setLocation(locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER));
 
         mPresenter.addDevice();
-        //mPresenter.updateLastRecord();
     }
 
     private void initMap(Bundle savedInstanceState) {

@@ -2,19 +2,19 @@ package com.milo.ironwill.keepmydevices;
 
 import android.location.Location;
 
-import java.util.Date;
-
 /**
  * Created by Milo on 16/8/18.
  */
 public class Device {
+    private String deviceSN;
     private String deviceBrand;
     private String deviceModel;
 
     private double deviceLatitude;
     private double deviceLongitude;
 
-    public Device(String brand, String model, Location location) {
+    public Device(String sn, String brand, String model, Location location) {
+        deviceSN        = sn;
         deviceBrand     = brand;
         deviceModel     = model;
         if (null != location) {
@@ -26,23 +26,13 @@ public class Device {
         }
     }
 
-    public String getDeviceBrand() {
-        return  deviceBrand;
-    }
-
-    public String getDeviceModel() {
-        return deviceModel;
-    }
-
-    public Double getDeviceLatitude() {
-        return deviceLatitude;
-    }
-
-    public Double getDeviceLongitude() {
-        return deviceLongitude;
-    }
-
-    public Date getTimeStamp() {
-        return new Date();
+    public String string() {
+        String result = "{" + String.format("\"%s\": \"%s\",", "sn", deviceSN) +
+                String.format("\"%s\": \"%s\",", "brand", deviceBrand) +
+                String.format("\"%s\": \"%s\",", "model", deviceModel) +
+                String.format("\"%s\": \"%s\",", "latitude", deviceLatitude) +
+                String.format("\"%s\": \"%s\"", "longitude", deviceLongitude) +
+                "}";
+        return result;
     }
 }

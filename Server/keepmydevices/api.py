@@ -50,6 +50,10 @@ def update_device():
 
         if device:
             app.logger.debug("Device already exists!")
+            if info.get('brand'):
+                device.brand = info.get('brand')
+            if info.get('model'):
+                device.model = info.get('model')
             device.latitude = info.get('latitude')
             device.longitude = info.get('longitude')
             device.timestamp = datetime.now()

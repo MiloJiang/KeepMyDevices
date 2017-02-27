@@ -81,7 +81,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var deviceInfo: Dictionary<String, String>?
     let locationManager: CLLocationManager = CLLocationManager()
 
-    let baseURL: String = "http://127.0.0.1:5000"
+    let baseURL: String = "http://www.ironwill.top"
     let authURL: String = "/auth"
     let updateURL: String = "/api/v1/update"
     let parameters: Parameters = ["username": "admin", "password": "admin"]

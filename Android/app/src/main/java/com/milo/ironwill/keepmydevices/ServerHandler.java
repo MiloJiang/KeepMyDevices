@@ -20,7 +20,7 @@ public class ServerHandler {
     public static final MediaType JSON
             = MediaType.parse("application/json; charset=utf-8");
 
-    private static final String URL_BASE = "http://10.0.2.1:5000";
+    private static final String URL_BASE = "http://www.ironwill.top";
     private static final String URL_AUTH = URL_BASE + "/auth";
     private static final String URL_DEVICE = URL_BASE + "/api/v1/update";
 

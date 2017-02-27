@@ -13,11 +13,13 @@ class CreateAdmin(Command):
             admin = models.User(login="admin", password=generate_password_hash("admin"))
             db.session.add(admin)
             db.session.commit()
-
-        print("User added...")
+            print("User added...Done!")
+        else:
+            print("User already exists!")
 
 
 def init_commands():
     app.migrate = Migrate(app, db)
     app.manager = Manager(app)
     app.manager.add_command('db', MigrateCommand)
+    app.manager.add_command('init', CreateAdmin)

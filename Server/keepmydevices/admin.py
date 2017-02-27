@@ -65,7 +65,6 @@ class DeviceAdmin(ModelView):
         return current_user.is_authenticated
 
 
-
 def init_admin():
     admin = Admin(app, name='Keep My Devices', index_view=MyAdminIndexView(), template_mode='bootstrap3')
     admin.add_view(DeviceAdmin(Device, db.session))

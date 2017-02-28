@@ -35,6 +35,7 @@ app.config['SECRET_KEY'] = '\xb7\x7f\xa6\xdf\xf3\x0f3\xefO\xe7\x9a\xd8?{\x82\xb8
 ```
 
 * Flask-migrate
+
 首次需要生成DB
 ````
 python migrate.py db init
@@ -45,15 +46,19 @@ python migrate.py db upgrade
 
 
 * 接入Flask-Restless
+
 提供可以API供应用访问
 
 * Flask-Admin
+
 管理页面
 
 * Flask-Security(optional)
+
 需要权限控制 https://github.com/flask-admin/Flask-Admin/tree/master/examples/auth
 
 * Flask-Login
+
 和Flask-Security相比, 页面(template)上的工作量更少一点. 但是两者都需要重写Admin页面来实现针对管理页面的权限管理.
 
 
@@ -64,3 +69,6 @@ API同样也需要保护
 Authorization: JWT <token> 
 ```
 
+* 增加自定义命令支持建立Admin账号
+
+* 实现API

@@ -3,6 +3,41 @@
 ## 概要
 服务使用 Python 的微框架 Flask 进行开发.
 
+## 快速上手
+
+#### 前提
+需要确保已经安装
+* Nginx
+* Python2.7
+* gunicorn
+* 其他python组件(可用通过pip install -r requirement.txt安装)
+
+#### 初始化
+```
+python migrate.py db init
+python migrate.py db migrate
+python migrate.py db upgrade
+```
+
+
+#### 运行
+* 调试
+
+```
+python run.py
+```
+
+
+* 部署
+
+gunicorn <AppFileName>:app
+AppFileName指的是flask启动文件的名字. 本项目是"run"
+所以
+```
+gunicorn run:app
+```
+
+
 ## 开发记录
 
 * 使用flask

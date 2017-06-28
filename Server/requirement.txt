@@ -7,3 +7,4 @@ flask-restless==0.17
 flask-login
 flask-jwt
 requests
+gunicorn
